@@ -10,6 +10,7 @@ const COLORS = {
 
   gray: "#83829A",
   gray2: "#C1C0C8",
+  gray3: "#C1C0C850",
 
   offwhite: "#F3F4F8",
   white: "#FFFFFF",
@@ -41,7 +42,8 @@ const SPACES = {
   // Global Space Sizes
   padding: 12,
   margin: 12,
-
+  gap: 12,
+  
   xSmall: 2,
   small: 4,
   medium: 6,

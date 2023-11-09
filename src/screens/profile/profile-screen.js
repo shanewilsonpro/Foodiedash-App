@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-export const Cart = () => {
+export const ProfileScreen = () => {
   return (
     <View>
-      <Text>Cart</Text>
+      <Text>Profile</Text>
     </View>
   );
 };

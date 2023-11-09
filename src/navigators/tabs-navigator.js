@@ -1,13 +1,16 @@
+// Libraries
 import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Home } from "../screens/home/Home";
-import { Cart } from "../screens/cart/Cart";
-import { Profile } from "../screens/profile/Profile";
-import { Search } from "../screens/search/Search";
+// Screens
+import { HomeScreen } from "../screens/home/home-screen";
+import { CartScreen } from "../screens/cart/cart-screen";
+import { ProfileScreen } from "../screens/profile/profile-screen";
+import { SearchScreen } from "../screens/search/search-screen";
 
-import { BORDER, COLORS, FONTSIZES } from "../theme/theme";
+// Theme
+import { BORDER, FONTSIZES, COLORS } from "../theme/theme";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +31,7 @@ export const TabsNavigator = () => {
     >
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeScreen}
         options={{
           tabBarStyle: tabBarStyle,
           tabBarShowLabel: false,
@@ -45,7 +48,7 @@ export const TabsNavigator = () => {
 
       <Tab.Screen
         name="Search"
-        component={Search}
+        component={SearchScreen}
         options={{
           tabBarStyle: tabBarStyle,
           tabBarShowLabel: false,
@@ -62,7 +65,7 @@ export const TabsNavigator = () => {
 
       <Tab.Screen
         name="Cart"
-        component={Cart}
+        component={CartScreen}
         options={{
           tabBarStyle: tabBarStyle,
           tabBarShowLabel: false,
@@ -105,7 +108,7 @@ export const TabsNavigator = () => {
 
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileScreen}
         options={{
           tabBarStyle: tabBarStyle,
           tabBarShowLabel: false,

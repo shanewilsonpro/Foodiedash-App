@@ -1,14 +1,31 @@
-import React, { useCallback } from "react";
+// Libraries
+import { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { hideAsync } from "expo-splash-screen";
+import {
+  requestForegroundPermissionsAsync,
+  getCurrentPositionAsync,
+} from "expo-location";
 
-import { TabsNavigator } from "./src/navigators/TabsNavigator";
+// Contexts
+import { UserLocationContext } from "./src/context/user-location-context";
+import { UserReversedGeoCode } from "./src/context/user-reversed-geo-code";
+
+// Navigators
+import { TabsNavigator } from "./src/navigators/tabs-navigator";
+
+// Constants
+import { defaultAddresss } from "./src/constants/constants";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [location, setLocation] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const [fontsLoaded] = useFonts({
     // Regular Fonts
     regular: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -39,20 +56,39 @@ export default function App() {
     }
   }, [fontsLoaded]);
 
+  useEffect(() => {
+    (async () => {
+      setAddress(defaultAddresss);
+
+      let { status } = await requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMessage("Permission to access location as denied");
+        return;
+      }
+
+      let location = await getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
   if (!fontsLoaded) {
     // Return a loading indicator or splash screen while fonts are loading or app is initializing
     return;
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="App"
-          component={TabsNavigator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <UserLocationContext.Provider value={{ location, setLocation }}>
+      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="App"
+              component={TabsNavigator}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </UserReversedGeoCode.Provider>
+    </UserLocationContext.Provider>
   );
 }
