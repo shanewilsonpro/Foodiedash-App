@@ -15,6 +15,7 @@ import { UserReversedGeoCode } from "./src/context/user-reversed-geo-code";
 
 // Navigators
 import { TabsNavigator } from "./src/navigators/tabs-navigator";
+import { FoodNavigator } from "./src/navigators/food-navigator";
 
 // Constants
 import { defaultAddresss } from "./src/constants/constants";
@@ -82,8 +83,14 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
-              name="App"
+              name="Tabs"
               component={TabsNavigator}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Food-Nav"
+              component={FoodNavigator}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
