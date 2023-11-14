@@ -17,6 +17,10 @@ import { UserReversedGeoCode } from "./src/context/user-reversed-geo-code";
 import { TabsNavigator } from "./src/navigators/tabs-navigator";
 import { FoodNavigator } from "./src/navigators/food-navigator";
 
+// Screens
+import { RestaurantScreen } from "./src/screens/app/restaurant-screen";
+import { RatingScreen } from "./src/screens/app/rating-screen";
+
 // Constants
 import { defaultAddresss } from "./src/constants/constants";
 
@@ -91,6 +95,18 @@ export default function App() {
             <Stack.Screen
               name="Food-Nav"
               component={FoodNavigator}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Restaurant"
+              component={RestaurantScreen}
+              options={{ headerShown: false }}
+            />
+
+            <Stack.Screen
+              name="Rating"
+              component={RatingScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
