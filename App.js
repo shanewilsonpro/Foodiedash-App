@@ -12,6 +12,7 @@ import {
 // Contexts
 import { UserLocationContext } from "./src/context/user-location-context";
 import { UserReversedGeoCode } from "./src/context/user-reversed-geo-code";
+import { RestaurantContext } from "./src/context/restaurant-context";
 
 // Navigators
 import { TabsNavigator } from "./src/navigators/tabs-navigator";
@@ -29,6 +30,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState(null);
+  const [restaurantObj, setRestaurantObj] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [fontsLoaded] = useFonts({
@@ -84,33 +86,35 @@ export default function App() {
   return (
     <UserLocationContext.Provider value={{ location, setLocation }}>
       <UserReversedGeoCode.Provider value={{ address, setAddress }}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Tabs"
-              component={TabsNavigator}
-              options={{ headerShown: false }}
-            />
+        <RestaurantContext.Provider value={{ restaurantObj, setRestaurantObj }}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Tabs"
+                component={TabsNavigator}
+                options={{ headerShown: false }}
+              />
 
-            <Stack.Screen
-              name="Food-Nav"
-              component={FoodNavigator}
-              options={{ headerShown: false }}
-            />
+              <Stack.Screen
+                name="Food-Nav"
+                component={FoodNavigator}
+                options={{ headerShown: false }}
+              />
 
-            <Stack.Screen
-              name="Restaurant"
-              component={RestaurantScreen}
-              options={{ headerShown: false }}
-            />
+              <Stack.Screen
+                name="Restaurant"
+                component={RestaurantScreen}
+                options={{ headerShown: false }}
+              />
 
-            <Stack.Screen
-              name="Rating"
-              component={RatingScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+              <Stack.Screen
+                name="Rating"
+                component={RatingScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RestaurantContext.Provider>
       </UserReversedGeoCode.Provider>
     </UserLocationContext.Provider>
   );

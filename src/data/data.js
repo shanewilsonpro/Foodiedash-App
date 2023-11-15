@@ -92,9 +92,9 @@ const restaurants = [
         "ratingCount": "3278",
         "coords": {
             "id": "2020",
-            "latitude": 37.785925590588505,
-            "longitude": -122.41007428687641,
-            "address": "333 O'Farrell St, San Francisco, CA 94102, United States",
+            "latitude": 34.23515001758108,
+            "longitude": -118.56139606781575,
+            "address": "19640 Nordhoff St, Northridge, CA 91324, United States",
             "title": "Burger King",
             "latitudeDelta": 0.0122,
             "longitudeDelta": 0.0221

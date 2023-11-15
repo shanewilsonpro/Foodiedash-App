@@ -56,4 +56,26 @@ export const styles = StyleSheet.create({
     fontFamily: "medium",
     color: COLORS.lightWhite,
   },
+  RestaurantDetailsContainer: {
+    margin: SPACES.medium
+  },
+  RestaurantTitle: {
+    fontSize: FONTSIZES.h2,
+    fontFamily: "semibold",
+    color: COLORS.black,
+  },
+  RestaurantHeadingContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  RestaurantHeadingLeft: {
+    fontSize: FONTSIZES.h4,
+    fontFamily: "medium",
+    color: COLORS.gray,
+  },
+  RestaurantHeadingRight: {
+    fontSize: FONTSIZES.h4,
+    fontFamily: "regular",
+    color: COLORS.black,
+  },
 });

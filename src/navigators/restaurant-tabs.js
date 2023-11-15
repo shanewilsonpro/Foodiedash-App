@@ -1,24 +1,17 @@
 // Libraries
-import { useState } from 'react';
-import { View, useWindowDimensions } from 'react-native';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { useState } from "react";
+import { useWindowDimensions } from "react-native";
+import { TabView, SceneMap } from "react-native-tab-view";
 
-const FirstRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
-);
-
-const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
-);
-
-const ThirdRoute = () => (
-    <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
-  );
+// Components
+import { Directions } from "../screens/app/components/tabs/directions";
+import { Menu } from "../screens/app/components/tabs/menu";
+import { New } from "../screens/app/components/tabs/new";
 
 const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-  third: ThirdRoute,
+  first: Menu,
+  second: Directions,
+  third: New,
 });
 
 export const RestaurantTabs = () => {
@@ -26,9 +19,9 @@ export const RestaurantTabs = () => {
 
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: 'first', title: 'Menu' },
-    { key: 'second', title: 'Directions' },
-    { key: 'third', title: 'New' },
+    { key: "first", title: "Menu" },
+    { key: "second", title: "Directions" },
+    { key: "third", title: "New" },
   ]);
 
   return (
@@ -39,4 +32,4 @@ export const RestaurantTabs = () => {
       initialLayout={{ width: layout.width }}
     />
   );
-}
+};
