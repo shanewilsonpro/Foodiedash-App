@@ -108,18 +108,6 @@ export default function App() {
             <NavigationContainer>
               <Stack.Navigator>
                 <Stack.Screen
-                  name="SignUp"
-                  component={SignUpScreen}
-                  options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                  options={{ headerShown: false }}
-                />
-
-                <Stack.Screen
                   name="Tabs"
                   component={TabsNavigator}
                   options={{ headerShown: false }}
@@ -140,6 +128,18 @@ export default function App() {
                 <Stack.Screen
                   name="Rating"
                   component={RatingScreen}
+                  options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                  name="SignUp"
+                  component={SignUpScreen}
+                  options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
+                  name="Login"
+                  component={LoginScreen}
                   options={{ headerShown: false }}
                 />
               </Stack.Navigator>

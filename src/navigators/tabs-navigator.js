@@ -1,4 +1,5 @@
 // Libraries
+import { useContext } from "react";
 import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,6 +9,10 @@ import { HomeScreen } from "../screens/home/home-screen";
 import { CartScreen } from "../screens/cart/cart-screen";
 import { ProfileScreen } from "../screens/profile/profile-screen";
 import { SearchScreen } from "../screens/search/search-screen";
+import { LoginScreen } from "../screens/authentication/login-screen";
+
+// Contexts
+import { LoginContext } from "../contexts/login-context";
 
 // Theme
 import { BORDER, FONTSIZES, COLORS } from "../theme/theme";
@@ -22,6 +27,8 @@ const tabBarStyle = {
 };
 
 export const TabsNavigator = () => {
+  const { login, setLogin } = useContext(LoginContext);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -108,7 +115,7 @@ export const TabsNavigator = () => {
 
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={login ? ProfileScreen : LoginScreen}
         options={{
           tabBarStyle: tabBarStyle,
           tabBarShowLabel: false,
