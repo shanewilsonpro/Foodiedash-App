@@ -8,6 +8,7 @@ import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
 } from "expo-location";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Contexts
 import { UserLocationContext } from "./src/contexts/user-location-context";
@@ -22,10 +23,11 @@ import { FoodNavigator } from "./src/navigators/food-navigator";
 // Screens
 import { RestaurantScreen } from "./src/screens/app/restaurant-screen";
 import { RatingScreen } from "./src/screens/app/rating-screen";
+import { LoginScreen } from "./src/screens/authentication/login-screen";
+import { SignUpScreen } from "./src/screens/authentication/sign-up-screen";
 
 // Constants
 import { defaultAddresss } from "./src/constants/constants";
-import { LoginScreen } from "./src/screens/authentication/login-screen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +35,7 @@ export default function App() {
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState(null);
   const [restaurantObj, setRestaurantObj] = useState(null);
-  const [login, setLogin] = useState(null);
+  const [login, setLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [fontsLoaded] = useFonts({
@@ -78,8 +80,20 @@ export default function App() {
 
       let location = await getCurrentPositionAsync({});
       setLocation(location);
+
+      loginStatus();
     })();
   }, []);
+
+  const loginStatus = async () => {
+    const userToken = await AsyncStorage.getItem("token");
+
+    if (userToken !== null) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  };
 
   if (!fontsLoaded) {
     // Return a loading indicator or splash screen while fonts are loading or app is initializing
@@ -87,15 +101,19 @@ export default function App() {
   }
 
   return (
-    <LoginContext.Provider value={{ login, setLogin }}>
-      <UserLocationContext.Provider value={{ location, setLocation }}>
-        <UserReversedGeoCode.Provider value={{ address, setAddress }}>
-          <RestaurantContext.Provider
-            value={{ restaurantObj, setRestaurantObj }}
-          >
+    <UserLocationContext.Provider value={{ location, setLocation }}>
+      <UserReversedGeoCode.Provider value={{ address, setAddress }}>
+        <RestaurantContext.Provider value={{ restaurantObj, setRestaurantObj }}>
+          <LoginContext.Provider value={{ login, setLogin }}>
             <NavigationContainer>
               <Stack.Navigator>
-              <Stack.Screen
+                <Stack.Screen
+                  name="SignUp"
+                  component={SignUpScreen}
+                  options={{ headerShown: false }}
+                />
+
+                <Stack.Screen
                   name="Login"
                   component={LoginScreen}
                   options={{ headerShown: false }}
@@ -126,9 +144,9 @@ export default function App() {
                 />
               </Stack.Navigator>
             </NavigationContainer>
-          </RestaurantContext.Provider>
-        </UserReversedGeoCode.Provider>
-      </UserLocationContext.Provider>
-    </LoginContext.Provider>
+          </LoginContext.Provider>
+        </RestaurantContext.Provider>
+      </UserReversedGeoCode.Provider>
+    </UserLocationContext.Provider>
   );
 }
