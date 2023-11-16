@@ -3,9 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 
-// Components
-import { PlaceMarker } from "./place-marker";
-
 // Contexts
 import { UserLocationContext } from "../../../context/user-location-context";
 
@@ -33,6 +30,7 @@ export const GoogleMapView = ({ placeList }) => {
   });
 
   useEffect(() => {
+    console.log("lol");
     if (location) {
       setMapRegion({
         latitude: location.coords.latitude,
@@ -48,7 +46,7 @@ export const GoogleMapView = ({ placeList }) => {
         location.coords.longitude
       );
     }
-  }, [location, coordinates]);
+  }, [location]);
 
   const fetchDirections = async (
     startLat,
@@ -72,7 +70,7 @@ export const GoogleMapView = ({ placeList }) => {
   };
 
   return (
-    <View style={styles.Container}>
+    <View key={placeList[0].id} style={styles.Container}>
       <MapView
         style={styles.Map}
         provider={PROVIDER_GOOGLE}
@@ -82,7 +80,19 @@ export const GoogleMapView = ({ placeList }) => {
         <Marker title="My location" coordinate={mapRegion} />
 
         {placeList.map(
-          (item, index) => index <= 1 && <PlaceMarker coordinates={item} />
+          (item, index) =>
+            index <= 1 && (
+              <Marker
+                key={index}
+                title={item.title}
+                coordinate={{
+                  latitude: item.latitude,
+                  longitude: item.longitude,
+                  latitudeDelta: 0.003,
+                  longitudeDelta: 0.01,
+                }}
+              />
+            )
         )}
 
         <Polyline

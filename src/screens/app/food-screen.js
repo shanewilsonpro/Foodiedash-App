@@ -128,7 +128,7 @@ export const FoodScreen = ({ route, navigation }) => {
             onPress={onPressBack}
             style={styles.BackButton(insets.top)}
           >
-            <Ionicons name="arrow-back-circle" size={50} color={COLORS.white} />
+            <Ionicons name="arrow-back-circle" size={40} color={COLORS.white} />
           </TouchableOpacity>
 
           {/* Share Button */}
@@ -138,7 +138,7 @@ export const FoodScreen = ({ route, navigation }) => {
           >
             <MaterialCommunityIcons
               name="share-circle"
-              size={50}
+              size={40}
               color={COLORS.white}
             />
           </TouchableOpacity>

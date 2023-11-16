@@ -1,12 +1,15 @@
 // Libraries
 import { useState } from "react";
-import { useWindowDimensions } from "react-native";
-import { TabView, SceneMap } from "react-native-tab-view";
+import { useWindowDimensions, Text } from "react-native";
+import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 
 // Components
 import { Directions } from "../screens/app/components/tabs/directions";
 import { Menu } from "../screens/app/components/tabs/menu";
 import { New } from "../screens/app/components/tabs/new";
+
+// Theme
+import { COLORS } from "../theme/theme";
 
 const renderScene = SceneMap({
   first: Menu,
@@ -30,6 +33,25 @@ export const RestaurantTabs = () => {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={{ width: layout.width }}
+      renderTabBar={(props) => (
+        <TabBar
+          {...props}
+          style={{ backgroundColor: COLORS.white }}
+          renderLabel={({ route, focused, color }) => (
+            <Text
+              style={{
+                color: focused ? COLORS.primary : COLORS.gray2,
+                fontFamily: focused ? "medium" : "regular",
+              }}
+            >
+              {route.title}
+            </Text>
+          )}
+          indicatorStyle={{
+            backgroundColor: COLORS.primary,
+          }}
+        />
+      )}
     />
   );
 };
