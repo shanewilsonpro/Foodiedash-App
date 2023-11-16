@@ -4,11 +4,11 @@ import { Text, View, Image } from "react-native";
 import { reverseGeocodeAsync } from "expo-location";
 
 // Contexts
-import { UserReversedGeoCode } from "../../../context/user-reversed-geo-code";
+import { UserReversedGeoCode } from "../../../contexts/user-reversed-geo-code";
 
 // Styles
 import { styles } from "./home-header.styles";
-import { UserLocationContext } from "../../../context/user-location-context";
+import { UserLocationContext } from "../../../contexts/user-location-context";
 
 export const HomeHeader = () => {
   // States

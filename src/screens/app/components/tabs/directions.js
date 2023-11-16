@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, Platform, Linking } from "react-native";
 import { GoogleMapView } from "../google-map-view";
 
 // Contexts
-import { RestaurantContext } from "../../../../context/restaurant-context";
+import { RestaurantContext } from "../../../../contexts/restaurant-context";
 
 // Styles
 import { styles } from "./directions.styles";

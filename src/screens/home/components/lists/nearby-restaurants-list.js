@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { RestaurantCard } from "../cards/restaurant-card";
 
 // Contexts
-import { RestaurantContext } from "../../../../context/restaurant-context";
+import { RestaurantContext } from "../../../../contexts/restaurant-context";
 
 // Data
 import data from "../../../../data/data";

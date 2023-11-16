@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { FoodTile } from "../food-tile";
 
 // Contexts
-import { RestaurantContext } from "../../../../context/restaurant-context";
+import { RestaurantContext } from "../../../../contexts/restaurant-context";
 
 import data from "../../../../data/data";
 

@@ -9,7 +9,7 @@ import { RatingInput } from "react-native-stock-star-rating";
 import { RestaurantTabs } from "../../navigators/restaurant-tabs";
 
 // Context
-import { UserLocationContext } from "../../context/user-location-context";
+import { UserLocationContext } from "../../contexts/user-location-context";
 
 // Hooks
 import googleApiServices from "../../hooks/google-api-services";

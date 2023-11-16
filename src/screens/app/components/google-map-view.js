@@ -4,7 +4,7 @@ import { View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker, Polyline } from "react-native-maps";
 
 // Contexts
-import { UserLocationContext } from "../../../context/user-location-context";
+import { UserLocationContext } from "../../../contexts/user-location-context";
 
 // Hooks
 import googleApiServices from "../../../hooks/google-api-services";
