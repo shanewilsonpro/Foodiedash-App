@@ -15,6 +15,7 @@ import { UserLocationContext } from "./src/contexts/user-location-context";
 import { UserReversedGeoCode } from "./src/contexts/user-reversed-geo-code";
 import { RestaurantContext } from "./src/contexts/restaurant-context";
 import { LoginContext } from "./src/contexts/login-context";
+import { CartCountContext } from "./src/contexts/CartCountContext";
 
 // Navigators
 import { TabsNavigator } from "./src/navigators/tabs-navigator";
@@ -34,6 +35,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [location, setLocation] = useState(null);
   const [address, setAddress] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
   const [restaurantObj, setRestaurantObj] = useState(null);
   const [login, setLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -105,45 +107,47 @@ export default function App() {
       <UserReversedGeoCode.Provider value={{ address, setAddress }}>
         <RestaurantContext.Provider value={{ restaurantObj, setRestaurantObj }}>
           <LoginContext.Provider value={{ login, setLogin }}>
-            <NavigationContainer>
-              <Stack.Navigator>
-                <Stack.Screen
-                  name="Tabs"
-                  component={TabsNavigator}
-                  options={{ headerShown: false }}
-                />
+            <CartCountContext.Provider value={{ cartCount, setCartCount }}>
+              <NavigationContainer>
+                <Stack.Navigator>
+                  <Stack.Screen
+                    name="Tabs"
+                    component={TabsNavigator}
+                    options={{ headerShown: false }}
+                  />
 
-                <Stack.Screen
-                  name="Food-Nav"
-                  component={FoodNavigator}
-                  options={{ headerShown: false }}
-                />
+                  <Stack.Screen
+                    name="Food-Nav"
+                    component={FoodNavigator}
+                    options={{ headerShown: false }}
+                  />
 
-                <Stack.Screen
-                  name="Restaurant"
-                  component={RestaurantScreen}
-                  options={{ headerShown: false }}
-                />
+                  <Stack.Screen
+                    name="Restaurant"
+                    component={RestaurantScreen}
+                    options={{ headerShown: false }}
+                  />
 
-                <Stack.Screen
-                  name="Rating"
-                  component={RatingScreen}
-                  options={{ headerShown: false }}
-                />
+                  <Stack.Screen
+                    name="Rating"
+                    component={RatingScreen}
+                    options={{ headerShown: false }}
+                  />
 
-                <Stack.Screen
-                  name="SignUp"
-                  component={SignUpScreen}
-                  options={{ headerShown: false }}
-                />
+                  <Stack.Screen
+                    name="SignUp"
+                    component={SignUpScreen}
+                    options={{ headerShown: false }}
+                  />
 
-                <Stack.Screen
-                  name="Login"
-                  component={LoginScreen}
-                  options={{ headerShown: false }}
-                />
-              </Stack.Navigator>
-            </NavigationContainer>
+                  <Stack.Screen
+                    name="Login"
+                    component={LoginScreen}
+                    options={{ headerShown: false }}
+                  />
+                </Stack.Navigator>
+              </NavigationContainer>
+            </CartCountContext.Provider>
           </LoginContext.Provider>
         </RestaurantContext.Provider>
       </UserReversedGeoCode.Provider>

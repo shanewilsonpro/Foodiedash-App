@@ -13,6 +13,7 @@ import { LoginScreen } from "../screens/authentication/login-screen";
 
 // Contexts
 import { LoginContext } from "../contexts/login-context";
+import { CartCountContext } from "../contexts/CartCountContext";
 
 // Theme
 import { BORDER, FONTSIZES, COLORS } from "../theme/theme";
@@ -27,7 +28,9 @@ const tabBarStyle = {
 };
 
 export const TabsNavigator = () => {
+  // Contexts
   const { login, setLogin } = useContext(LoginContext);
+  const { cartCount, setCartCount } = useContext(CartCountContext);
 
   return (
     <Tab.Navigator
@@ -85,29 +88,31 @@ export const TabsNavigator = () => {
                 size={26}
               />
 
-              <View
-                style={{
-                  position: "absolute",
-                  right: -6,
-                  top: -3,
-                  backgroundColor: "red",
-                  borderRadius: BORDER.radius,
-                  width: 16,
-                  height: 16,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
+              {cartCount > 0 && (
+                <View
                   style={{
-                    color: COLORS.white,
-                    fontFamily: "extrabold",
-                    fontSize: FONTSIZES.h6,
+                    position: "absolute",
+                    right: -6,
+                    top: -3,
+                    backgroundColor: "red",
+                    borderRadius: BORDER.radius,
+                    width: 16,
+                    height: 16,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  {10}
-                </Text>
-              </View>
+                  <Text
+                    style={{
+                      color: COLORS.white,
+                      fontFamily: "extrabold",
+                      fontSize: FONTSIZES.h6,
+                    }}
+                  >
+                    {cartCount}
+                  </Text>
+                </View>
+              )}
             </View>
           ),
         }}

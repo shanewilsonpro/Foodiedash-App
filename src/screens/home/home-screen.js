@@ -1,6 +1,6 @@
 // Libraries
 import { useState } from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
 
 // Components
 import { HomeHeader } from "./components/home-header";
@@ -13,6 +13,7 @@ import { FastestNearYouList } from "./components/lists/fastest-near-you-list";
 
 // Styles
 import { styles } from "./home.styles";
+import { FilteredCategoryList } from "./components/lists/filtered-category-list";
 
 export const HomeScreen = () => {
   // States
@@ -43,31 +44,47 @@ export const HomeScreen = () => {
           isViewAllIcon={false}
           onPress={() => {}}
         />
-        <ChoiceList setSelectedChoice={setSelectedChoice} />
-
-        {/* NEARBY RESTAURANTS LIST */}
-        <Heading
-          heading={"Nearby Restaurants"}
-          isViewAllIcon={true}
-          onPress={() => {}}
+        <ChoiceList
+          setSelectedChoice={setSelectedChoice}
+          setSelectedSection={setSelectedSection}
         />
-        <NearbyRestaurantsList />
+        {selectedCategory !== null && selectedSection !== null ? (
+          <View>
+            <Heading
+              heading={`Browse ${selectedValue}`}
+              isViewAllIcon={true}
+              onPress={() => {}}
+            />
 
-        {/* TRY SOMETHING NEW LIST */}
-        <Heading
-          heading={"Try Something New"}
-          isViewAllIcon={true}
-          onPress={() => {}}
-        />
-        <NewFoodList />
+            <FilteredCategoryList />
+          </View>
+        ) : (
+          <View>
+            {/* NEARBY RESTAURANTS LIST */}
+            <Heading
+              heading={"Nearby Restaurants"}
+              isViewAllIcon={true}
+              onPress={() => {}}
+            />
+            <NearbyRestaurantsList />
 
-        {/* FASTEST NEAR YOU LIST */}
-        <Heading
-          heading={"Fastest Near You"}
-          isViewAllIcon={true}
-          onPress={() => {}}
-        />
-        <FastestNearYouList />
+            {/* TRY SOMETHING NEW LIST */}
+            <Heading
+              heading={"Try Something New"}
+              isViewAllIcon={true}
+              onPress={() => {}}
+            />
+            <NewFoodList />
+
+            {/* FASTEST NEAR YOU LIST */}
+            <Heading
+              heading={"Fastest Near You"}
+              isViewAllIcon={true}
+              onPress={() => {}}
+            />
+            <FastestNearYouList />
+          </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );

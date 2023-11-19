@@ -1,6 +1,6 @@
 // Libraries
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { RatingInput } from "react-native-stock-star-rating";
+import { Rating } from "react-native-stock-star-rating";
 import { Shadow } from "react-native-shadow-2";
 
 // Theme
@@ -27,8 +27,8 @@ export const RestaurantCard = ({ item, onPress }) => {
 
           {/* Ratings  */}
           <View style={styles.RatingsContainer}>
-            <RatingInput
-              rating={item.rating}
+            <Rating
+              stars={item.rating}
               size={14}
               maxStars={5}
               setRatings={item.rating}
