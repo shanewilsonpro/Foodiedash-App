@@ -48,6 +48,8 @@ export const HomeScreen = () => {
           setSelectedChoice={setSelectedChoice}
           setSelectedSection={setSelectedSection}
         />
+
+        {/* SELECTED CATEGORY LIST */}
         {selectedCategory !== null && selectedSection !== null ? (
           <View>
             <Heading
